@@ -13,7 +13,7 @@ import java.util.List;
 public class BookService {
     private final BookRepository bookRepository;
 
-    public List<Book> findALl() {
+    public List<Book> findAll() {
         return bookRepository.findAll();
     }
 

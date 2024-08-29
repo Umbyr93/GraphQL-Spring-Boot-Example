@@ -18,7 +18,7 @@ public class BookController {
 
     @QueryMapping
     public List<Book> findAllBooks() {
-        return bookService.findALl();
+        return bookService.findAll();
     }
 
     @QueryMapping

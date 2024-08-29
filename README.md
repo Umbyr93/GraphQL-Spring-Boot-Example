@@ -10,14 +10,18 @@ Start this example as a normal **Spring Boot Application**.
 **Password**: empty
 
 ## GraphQL
-There are 2 ways to call the **GraphQL APIs**:
+There are two ways to call the **GraphQL APIs**:
 1. Using the **GraphiQL** tool at the following endpoint: **localhost:8080/graphiql**
-2. Calling the endpoint (**POST /graphql**) using clients like Postman with the query as the body
+![alt text](src/main/resources/asset/graphiql.png)
+
+
+2. Calling the endpoint `/graphql (POST)` using clients like Postman with the query as the body
+   ![alt text](src/main/resources/asset/postman.png)
 
 ## Query example
 Queries are used to **get** data.
 
-### First Query:
+### Single Query
 ```graphql
 query MyQuery {
     findBookById(id: 1) {
@@ -40,11 +44,12 @@ Response:
 }
 ```
 
-### Second Query:
+### Multiple Query
+You can exclude properties you don't want, like the ID in this case, to receive a lighter response.
+
 ```graphql
 query MyQuery {
     findBookById(id: 1) {
-        id
         title
         author
     }
@@ -61,7 +66,6 @@ Response:
 {
     "data": {
         "findBookById": {
-            "id": "1",
             "title": "The Lord of the Rings",
             "author": "Tolkien"
         },
@@ -84,7 +88,7 @@ Response:
 ## Mutation example
 Mutations are used to **create or modify** data.
 
-### First Mutation:
+### Create
 ```graphql
 mutation MyMutation {
   createBook(book: {title: "Test", author: "author"}) {
@@ -107,7 +111,7 @@ Response:
 }
 ```
 
-### Second Mutation:
+### Update
 ```graphql
 mutation MyMutation {
   updateBook(id: 2, title: "Harry Potter 2") {
