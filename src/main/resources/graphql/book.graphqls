@@ -4,7 +4,17 @@ type Book {
     author: String!
 }
 
+input BookDto {
+    title: String!
+    author: String!
+}
+
 type Query {
-    allBooks: [Book]
-    findById(id: ID!): Book
+    findAllBooks: [Book]
+    findBookById(id: ID!): Book
+}
+
+type Mutation {
+    createBook(book: BookDto!): Book!
+    updateBook(id: ID!, title: String, author: String): Book!
 }

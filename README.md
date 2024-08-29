@@ -15,10 +15,12 @@ There are 2 ways to call the **GraphQL APIs**:
 2. Calling the endpoint (**POST /graphql**) using clients like Postman with the query as the body
 
 ## Query example
+Queries are used to **get** data.
+
 ### First Query:
 ```graphql
-query My_Query {
-    findById(id: 1) {
+query MyQuery {
+    findBookById(id: 1) {
         id
         title
         author
@@ -29,7 +31,7 @@ Response:
 ```json
 {
     "data": {
-        "findById": {
+        "findBookById": {
             "id": "1",
             "title": "The Lord of the Rings",
             "author": "Tolkien"
@@ -40,13 +42,13 @@ Response:
 
 ### Second Query:
 ```graphql
-query My_Query {
-    findById(id: 1) {
+query MyQuery {
+    findBookById(id: 1) {
         id
         title
         author
     }
-    allBooks {
+    findAllBooks {
         id
         title
         author
@@ -58,12 +60,12 @@ Response:
 ```json
 {
     "data": {
-        "findById": {
+        "findBookById": {
             "id": "1",
             "title": "The Lord of the Rings",
             "author": "Tolkien"
         },
-        "allBooks": [
+        "findAllBooks": [
             {
                 "id": "1",
                 "title": "The Lord of the Rings",
@@ -75,6 +77,55 @@ Response:
                 "author": "Rowling"
             }
         ]
+    }
+}
+```
+
+## Mutation example
+Mutations are used to **create or modify** data.
+
+### First Mutation:
+```graphql
+mutation MyMutation {
+  createBook(book: {title: "Test", author: "author"}) {
+    id
+    title
+    author
+  }
+}
+```
+Response:
+```json
+{
+    "data": {
+        "createBook": {
+            "id": "3",
+            "title": "Test",
+            "author": "author"
+        }
+    }
+}
+```
+
+### Second Mutation:
+```graphql
+mutation MyMutation {
+  updateBook(id: 2, title: "Harry Potter 2") {
+    id
+    title
+    author
+  }
+}
+```
+Response:
+```json
+{
+    "data": {
+        "updateBook": {
+            "id": "2",
+            "title": "Harry Potter 2",
+            "author": "Rowling"
+        }
     }
 }
 ```
